@@ -13,7 +13,8 @@ export const Layout: React.FC<LayoutProps> = ({ title, subTitle, body }) => {
         <h1>{title}</h1>
         <h5>{subTitle}</h5>
       </React.Fragment>
-      <div>{body}</div>
+      <body>{body}</body>
+      <footer>This is Footer!</footer>
     </div>
   );
 };
