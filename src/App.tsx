@@ -1,6 +1,6 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { Input } from './components/input/input.component';
-
+import { Layout } from './components/layout/layout.component';
 import './style.css';
 
 export const App: FC = () => {
@@ -15,17 +15,21 @@ export const App: FC = () => {
   };
   return (
     <div>
-      <h1>Beer BANK</h1>
-      <h5>Find your favourite beer here!</h5>
-      <Input
-        inputRef={inputRef}
-        type="text"
-        placeholder="Search for Beer Name"
-        value={inputVal}
-        disabled={false}
-        onChange={(e) => handleSearch(e)}
-        classes="bold"
-      />
+      <Layout
+        title={'Beer BANK'}
+        subTitle={'Find your favourite beer here!'}
+        body={
+          <Input
+            inputRef={inputRef}
+            type="text"
+            placeholder="Search for Beer Name"
+            value={inputVal}
+            disabled={false}
+            onChange={(e) => handleSearch(e)}
+            classes="bold"
+          />
+        }
+      ></Layout>
     </div>
   );
 };
