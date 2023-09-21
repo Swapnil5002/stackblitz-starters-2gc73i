@@ -16,8 +16,8 @@ export const App: FC = () => {
   return (
     <div>
       <Layout
-        title={'Beer BANK'}
-        subTitle={'Find your favourite beer here!'}
+        title="Beer BANK"
+        subTitle="Find your favourite beer here!"
         body={
           <Input
             inputRef={inputRef}
@@ -26,7 +26,7 @@ export const App: FC = () => {
             value={inputVal}
             disabled={false}
             onChange={(e) => handleSearch(e)}
-            classes="bold"
+            classes="m-10"
           />
         }
       ></Layout>
