@@ -14,9 +14,10 @@ export const App: FC = () => {
     let val = e.target.value;
     setInputVal(val);
   };
-  const { data, error } = useHttp('https://api.punkapi.com/v2/beers', 'GET');
-  console.log(data, 'DATA');
-  console.log(error, 'ERROR');
+  const { data, error, isLoading } = useHttp(
+    'https://api.punkapi.com/v2/beers',
+    'GET'
+  );
 
   return (
     <div>
