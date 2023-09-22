@@ -1,30 +1,30 @@
 import { useEffect, useState } from 'react';
 
-interface UrlProps {
-  url: string;
-}
-
-const useHttp = ({ url }: UrlProps) => {
+const useHttp = (url) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
-    const fetchCall = async () => {
+    const fetchData = async () => {
       try {
-        const resp = await fetch(url);
-        const responseData = await resp.json();
-        if (responseData?.status !== 'success') {
-          setLoading(true);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Request failed');
         }
-        setLoading(false);
+        const responseData = await response.json();
         setData(responseData);
+        setLoading(false);
       } catch (error) {
-        console.log(error);
-        setError(error);
+        setError(error.message || 'Something went wrong');
+        setLoading(false);
       }
     };
-    fetchCall();
+
+    fetchData();
   }, [url]);
+
   return { data, error, isLoading };
 };
+
 export default useHttp;
