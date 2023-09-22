@@ -19,7 +19,6 @@ export const App: FC = () => {
     'https://api.punkapi.com/v2/beers',
     'GET'
   );
-  console.log(data, 'DATA');
   return (
     <Layout
       title="Beer Bank"

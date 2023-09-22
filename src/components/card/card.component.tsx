@@ -1,4 +1,5 @@
 import React from 'react';
+import './card.component.style';
 
 interface CardProps {
   image: string;
@@ -11,12 +12,11 @@ export const Card: React.FC<CardProps> = ({
   cardTitle,
   cardSubtitle,
 }) => {
-  console.log(image, 'IMAGE__IMAGE');
   return (
-    <div>
-      <img src={image} alt={image} />
-      <p>{cardTitle}</p>
-      <p>{cardSubtitle}</p>
+    <div className="card-container">
+      <img src={image} alt={image} className="image" />
+      <p className="card-title">{cardTitle}</p>
+      <p className="cards-sub-title">{cardSubtitle}</p>
     </div>
   );
 };
