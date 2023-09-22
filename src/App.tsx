@@ -16,7 +16,7 @@ export const App: FC = () => {
   return (
     <div>
       <Layout
-        title="Beer BANK"
+        title="Beer Bank"
         subTitle="Find your favourite beer here!"
         headerComponent={
           <Input
