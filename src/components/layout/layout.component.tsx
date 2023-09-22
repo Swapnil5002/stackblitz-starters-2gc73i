@@ -9,10 +9,10 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ title, subTitle, body }) => {
   return (
     <div>
-      <React.Fragment>
+      <header>
         <h1>{title}</h1>
         <h5>{subTitle}</h5>
-      </React.Fragment>
+      </header>
       <body>{body}</body>
       <footer>This is Footer!</footer>
     </div>
