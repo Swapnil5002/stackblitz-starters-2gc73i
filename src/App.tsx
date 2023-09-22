@@ -1,7 +1,7 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
-import './style.css';
+import './style.scss';
 
 export const App: FC = () => {
   const [inputVal, setInputVal] = useState('');
@@ -18,7 +18,7 @@ export const App: FC = () => {
       <Layout
         title="Beer BANK"
         subTitle="Find your favourite beer here!"
-        body={
+        headerComponent={
           <Input
             inputRef={inputRef}
             type="text"
@@ -29,6 +29,7 @@ export const App: FC = () => {
             classes="m-[100px]"
           />
         }
+        body={<></>}
       ></Layout>
     </div>
   );
