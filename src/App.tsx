@@ -26,7 +26,7 @@ export const App: FC = () => {
             value={inputVal}
             disabled={false}
             onChange={(e) => handleSearch(e)}
-            classes="m-[100px]"
+            classes="search-bar"
           />
         }
         body={<></>}
