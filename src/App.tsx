@@ -1,4 +1,5 @@
-import { FC, useState, useRef, useEffect } from 'react';
+import React, { FC, useState, useRef, useEffect } from 'react';
+import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
 import useHttp from './hooks/fetch.hook';
@@ -18,25 +19,38 @@ export const App: FC = () => {
     'https://api.punkapi.com/v2/beers',
     'GET'
   );
-
+  console.log(data, 'DATA');
   return (
-    <div>
-      <Layout
-        title="Beer Bank"
-        subTitle="Find your favourite beer here!"
-        headerComponent={
-          <Input
-            inputRef={inputRef}
-            type="text"
-            placeholder="Search for Beer Name"
-            value={inputVal}
-            disabled={false}
-            onChange={(e) => handleSearch(e)}
-            classes="search-bar"
-          />
-        }
-        body={<></>}
-      ></Layout>
-    </div>
+    <Layout
+      title="Beer Bank"
+      subTitle="Find your favourite beer here!"
+      headerComponent={
+        <Input
+          inputRef={inputRef}
+          type="text"
+          placeholder="Search for Beer Name"
+          value={inputVal}
+          disabled={false}
+          onChange={(e) => handleSearch(e)}
+          classes="search-bar"
+        />
+      }
+      mainBody={
+        <>
+          {data.map((value, index) => {
+            return (
+              <React.Fragment key={index}>
+                <Card
+                  cardTitle={value.name}
+                  cardSubtitle={value.tagline}
+                  image={value.image_url}
+                />
+                ;
+              </React.Fragment>
+            );
+          })}
+        </>
+      }
+    ></Layout>
   );
 };

@@ -4,14 +4,14 @@ import './layout.component.style.scss';
 interface LayoutProps {
   title: string;
   subTitle: string;
-  body: React.ReactNode;
+  mainBody: React.ReactNode;
   headerComponent: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
   title,
   subTitle,
-  body,
+  mainBody,
   headerComponent,
 }) => {
   return (
@@ -21,7 +21,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <h5 className="subtitle">{subTitle}</h5>
         <div className="header-component">{headerComponent}</div>
       </header>
-      <body className="body">{body}</body>
+      <div>{mainBody}</div>
       <footer>This is Footer!</footer>
     </div>
   );

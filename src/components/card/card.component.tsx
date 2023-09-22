@@ -11,5 +11,12 @@ export const Card: React.FC<CardProps> = ({
   cardTitle,
   cardSubtitle,
 }) => {
-  return <div>This is Modal</div>;
+  console.log(image, 'IMAGE__IMAGE');
+  return (
+    <div>
+      <img src={image} alt={image} />
+      <p>{cardTitle}</p>
+      <p>{cardSubtitle}</p>
+    </div>
+  );
 };
