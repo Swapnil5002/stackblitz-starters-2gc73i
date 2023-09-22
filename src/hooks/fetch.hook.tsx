@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useHttp = (url) => {
+const useHttp = (url, method = 'GET') => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setLoading] = useState(true);
@@ -8,7 +8,7 @@ const useHttp = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, { method });
         if (!response.ok) {
           throw new Error('Request failed');
         }
