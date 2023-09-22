@@ -1,6 +1,7 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
+import useHttp from './hooks/fetch.hook';
 import './style.scss';
 
 export const App: FC = () => {
@@ -13,6 +14,10 @@ export const App: FC = () => {
     let val = e.target.value;
     setInputVal(val);
   };
+  const { data, error } = useHttp('https://api.punkapi.com/v2/beers');
+  console.log(data, 'DATA');
+  console.log(error, 'ERROR');
+
   return (
     <div>
       <Layout
