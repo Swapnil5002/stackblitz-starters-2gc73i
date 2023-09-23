@@ -35,7 +35,7 @@ export const App: FC = () => {
         />
       }
       mainBody={
-        <>
+        <div className="main-card">
           {data.map((value, index) => {
             return (
               <React.Fragment key={index}>
@@ -48,7 +48,7 @@ export const App: FC = () => {
               </React.Fragment>
             );
           })}
-        </>
+        </div>
       }
     ></Layout>
   );
