@@ -24,9 +24,6 @@ export const App: FC = () => {
       setLoading(true);
       try {
         const response = await fetch(EndPoints.GET_BEER);
-        if (!response.ok) {
-          throw new Error('Request failed');
-        }
         const data = await response.json();
         setScreenData(data);
       } catch (error) {
@@ -39,16 +36,12 @@ export const App: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(inputVal, 'INPUT_INPUT');
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await fetch(
           EndPoints.GET_BEER + '?beer_name=' + inputVal
         );
-        if (!response.ok) {
-          throw new Error('Request failed');
-        }
         const data = await response.json();
         setScreenData(data);
       } catch (error) {
@@ -56,10 +49,7 @@ export const App: FC = () => {
       }
       setLoading(false);
     };
-
-    if (inputVal) {
-      fetchData();
-    }
+    inputVal && fetchData();
   }, [inputVal]);
 
   return (
@@ -80,7 +70,7 @@ export const App: FC = () => {
       mainBody={
         <div className="main-card-container">
           <div className="main-card-child">
-            {screenData.map((value, index) => (
+            {screenData?.map((value, index) => (
               <div className="card" key={index}>
                 {loading ? (
                   <div className="shimmer-effect"></div>
