@@ -14,7 +14,7 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div className="card-container">
-      <img src={image} alt={image} className="image" />
+      <img src={image} alt="alt-image" className="image" />
       <p className="card-title">{cardTitle}</p>
       <p className="cards-sub-title">{cardSubtitle}</p>
     </div>

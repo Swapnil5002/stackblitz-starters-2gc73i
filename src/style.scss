@@ -6,5 +6,29 @@ body {
 }
 .search-bar {
   border: none;
-  padding: 8px 150px;
+  padding: 8px 15px;
+  width: 100%;
+}
+.main-card-container {
+  display: flex;
+  margin-bottom: 25px;
+  .main-card-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 5%;
+  }
+}
+
+.card {
+  width: calc(33.33% - 10px);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
 }

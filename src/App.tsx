@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useEffect } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
@@ -35,19 +35,18 @@ export const App: FC = () => {
         />
       }
       mainBody={
-        <div className="main-card">
-          {data.map((value, index) => {
-            return (
-              <React.Fragment key={index}>
+        <div className="main-card-container">
+          <div className="main-card-child">
+            {data.map((value, index) => (
+              <div className="card" key={index}>
                 <Card
                   cardTitle={value.name}
                   cardSubtitle={value.tagline}
                   image={value.image_url}
                 />
-                ;
-              </React.Fragment>
-            );
-          })}
+              </div>
+            ))}
+          </div>
         </div>
       }
     ></Layout>

@@ -19,6 +19,8 @@ export const Input: React.FC<InputProps> = ({
   onChange,
   classes,
 }) => {
+  // const classList = ['input'];
+  // classes && classList.push(classes);
   return (
     <input
       id="1"

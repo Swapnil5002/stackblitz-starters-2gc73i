@@ -16,12 +16,12 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
   return (
     <div>
-      <header className="background ">
+      <header className="header ">
         <h1 className="title">{title}</h1>
         <h5 className="subtitle">{subTitle}</h5>
         <div className="header-component">{headerComponent}</div>
       </header>
-      <div>{mainBody}</div>
+      <div className="body">{mainBody}</div>
       <footer>This is Footer!</footer>
     </div>
   );

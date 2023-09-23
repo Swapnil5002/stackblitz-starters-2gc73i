@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: column;
   border: 1px solid;
-  width: 10%;
-  height: 15%;
+  margin: auto;
   .image {
     height: 50%;
-    width: 5%;
+    width: calc(75% - 5px);
   }
   .card-title {
     color: #eec84b;
