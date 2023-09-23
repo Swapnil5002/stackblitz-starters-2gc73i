@@ -11,9 +11,7 @@ export const App: FC = () => {
   const [screenData, setScreenData] = useState([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const { data, isLoading: isBeerLoading } = useHttp(EndPoints.GET_BEER);
-  useEffect(() => {
-    console.log(data, 'DATA');
-  }, [data]);
+
   useEffect(() => {
     setScreenData(data);
   }, [data]);
@@ -24,22 +22,23 @@ export const App: FC = () => {
 
   const handleSearch = (e) => {
     setInputVal(e.target.value);
+    console.log(inputVal, 'asdasdasdasdasdsadas');
   };
 
-  // useEffect(() => {
-  //   const searchData = async () => {
-  //     try {
-  //       const { data, isLoading: isSearchLoading } = await useHttp(
-  //         EndPoints.GET_BEER + '?beer_name=' + inputVal
-  //       );
-  //       setScreenData(data);
-  //       setIsLoading(isSearchLoading);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   searchData();
-  // }, [inputVal]);
+  useEffect(() => {
+    console.log(inputVal, 'INPUT');
+    const fetchData = async () => {
+      const { data: searchData } = await useHttp(
+        EndPoints.GET_BEER + '?beer_name=' + inputVal
+      );
+      setScreenData(searchData);
+    };
+    if (inputVal) {
+      fetchData();
+    } else {
+      setScreenData(data);
+    }
+  }, [inputVal]);
 
   return (
     <Layout
