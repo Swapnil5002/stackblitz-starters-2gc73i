@@ -2,19 +2,14 @@ import { FC, useState, useRef, useEffect } from 'react';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
-import { EndPoints } from './endpoints';
-import useHttp from './hooks/fetch.hook';
+import { EndPoints, METHOD } from './endpoints';
 import './style.scss';
 
 export const App: FC = () => {
   const [inputVal, setInputVal] = useState('');
   const [screenData, setScreenData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { data, isLoading: isBeerLoading } = useHttp(EndPoints.GET_BEER);
-
-  useEffect(() => {
-    setScreenData(data);
-  }, [data]);
 
   useEffect(() => {
     inputRef?.current?.focus();
@@ -24,26 +19,48 @@ export const App: FC = () => {
     setInputVal(e.target.value);
   };
 
-  const searchData = async () => {
-    try {
-      const { data } = await useHttp(
-        EndPoints.GET_BEER + '?beer_name=' + inputVal,
-        'GET'
-      );
-      console.log(data, 'DATA__INSIDED');
-      setScreenData(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(EndPoints.GET_BEER);
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+        const data = await response.json();
+        setScreenData(data);
+      } catch (error) {
+        console.error(error);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
+    console.log(inputVal, 'INPUT_INPUT');
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          EndPoints.GET_BEER + '?beer_name=' + inputVal
+        );
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+        const data = await response.json();
+        setScreenData(data);
+      } catch (error) {
+        console.error(error);
+      }
+      setLoading(false);
+    };
+
     if (inputVal) {
-      searchData();
-    } else {
-      setScreenData(data);
+      fetchData();
     }
-  }, [inputVal, data]);
+  }, [inputVal]);
 
   return (
     <Layout
@@ -63,9 +80,9 @@ export const App: FC = () => {
       mainBody={
         <div className="main-card-container">
           <div className="main-card-child">
-            {screenData?.map((value, index) => (
+            {screenData.map((value, index) => (
               <div className="card" key={index}>
-                {isBeerLoading ? (
+                {loading ? (
                   <div className="shimmer-effect"></div>
                 ) : (
                   <Card
