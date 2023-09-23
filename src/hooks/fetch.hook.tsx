@@ -15,7 +15,7 @@ const useHttp = (url, method = 'GET') => {
           setLoading(false);
         }
       } catch (error) {
-        setError(error.message || 'Something went wrong');
+        setError('Something went wrong:', error);
         setLoading(false);
       }
     };

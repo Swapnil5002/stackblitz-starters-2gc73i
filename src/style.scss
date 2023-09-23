@@ -22,17 +22,12 @@ body {
   }
   .shimmer-effect {
     position: absolute;
-    // top: 0;
-    // left: 0;
-    // right: 0;
-    // bottom: 0;
     background: linear-gradient(
       to right,
       transparent,
       rgba(255, 255, 255, 0.4),
       transparent
     );
-    // background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
 }
