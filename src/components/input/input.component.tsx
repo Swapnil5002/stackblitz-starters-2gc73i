@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useId } from 'react';
 
 interface InputProps {
   type: string;
@@ -19,12 +19,10 @@ export const Input: React.FC<InputProps> = ({
   onChange,
   classes,
 }) => {
-  // const classList = ['input'];
-  // classes && classList.push(classes);
-
+  const id = useId();
   return (
     <input
-      id="1"
+      id={id + 'input'}
       className={classes}
       type={type}
       placeholder={placeholder}
