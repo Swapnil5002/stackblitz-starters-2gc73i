@@ -22,23 +22,28 @@ export const App: FC = () => {
 
   const handleSearch = (e) => {
     setInputVal(e.target.value);
-    console.log(inputVal, 'asdasdasdasdasdsadas');
+  };
+
+  const fetchData = async () => {
+    try {
+      const { data } = await useHttp(
+        EndPoints.GET_BEER + '?beer_name=' + inputVal,
+        'GET'
+      );
+      console.log(data, 'DATA__INSIDED');
+      setScreenData(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-    console.log(inputVal, 'INPUT');
-    const fetchData = async () => {
-      const { data: searchData } = await useHttp(
-        EndPoints.GET_BEER + '?beer_name=' + inputVal
-      );
-      setScreenData(searchData);
-    };
     if (inputVal) {
       fetchData();
     } else {
       setScreenData(data);
     }
-  }, [inputVal]);
+  }, [inputVal, data]);
 
   return (
     <Layout
