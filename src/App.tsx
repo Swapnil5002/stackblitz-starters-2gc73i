@@ -24,7 +24,7 @@ export const App: FC = () => {
     setInputVal(e.target.value);
   };
 
-  const fetchData = async () => {
+  const searchData = async () => {
     try {
       const { data } = await useHttp(
         EndPoints.GET_BEER + '?beer_name=' + inputVal,
@@ -39,7 +39,7 @@ export const App: FC = () => {
 
   useEffect(() => {
     if (inputVal) {
-      fetchData();
+      searchData();
     } else {
       setScreenData(data);
     }
