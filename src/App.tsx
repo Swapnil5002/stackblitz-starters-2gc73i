@@ -2,8 +2,10 @@ import { FC, useState, useRef, useEffect } from 'react';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
-import { EndPoints } from './endpoints';
+import Loader from './components/loader/loader.component';
+import { CONSTANTS, EndPoints } from './endpoints';
 import './style.scss';
+import { debounce } from './utils/debounce.utils';
 
 export const App: FC = () => {
   const [inputVal, setInputVal] = useState('');
@@ -49,7 +51,8 @@ export const App: FC = () => {
       }
       setLoading(false);
     };
-    inputVal && fetchData();
+    const debouncedFetchData = debounce(fetchData, CONSTANTS.debounceConst);
+    inputVal && debouncedFetchData();
   }, [inputVal]);
 
   return (
@@ -73,7 +76,7 @@ export const App: FC = () => {
             {screenData?.map((value, index) => (
               <div className="card" key={index}>
                 {loading ? (
-                  <div className="shimmer-effect"></div>
+                  <Loader />
                 ) : (
                   <Card
                     cardTitle={value.name}
