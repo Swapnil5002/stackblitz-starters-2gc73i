@@ -17,6 +17,8 @@ export const App: FC = () => {
     setInputVal(val);
   };
   const { data, isLoading } = useHttp(EndPoints.GET_BEER, 'GET');
+
+  useEffect(() => {}, [inputVal]);
   return (
     <Layout
       title="Beer Bank"
