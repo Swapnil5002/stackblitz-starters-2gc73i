@@ -3,6 +3,7 @@ import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
 import useHttp from './hooks/fetch.hook';
+import { EndPoints } from './endpoints';
 import './style.scss';
 
 export const App: FC = () => {
@@ -15,10 +16,7 @@ export const App: FC = () => {
     let val = e.target.value;
     setInputVal(val);
   };
-  const { data, error, isLoading } = useHttp(
-    'https://api.punkapi.com/v2/beers',
-    'GET'
-  );
+  const { data, isLoading } = useHttp(EndPoints.GET_BEER, 'GET');
   return (
     <Layout
       title="Beer Bank"

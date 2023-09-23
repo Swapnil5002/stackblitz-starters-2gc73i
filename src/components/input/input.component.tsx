@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface InputProps {
   type: string;
@@ -21,6 +21,7 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   // const classList = ['input'];
   // classes && classList.push(classes);
+
   return (
     <input
       id="1"
