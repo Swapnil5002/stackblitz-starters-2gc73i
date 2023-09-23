@@ -13,10 +13,12 @@ export const Card: React.FC<CardProps> = ({
   cardSubtitle,
 }) => {
   return (
-    <div className="card-container">
-      <img src={image} alt="alt-image" className="image" />
-      <p className="card-title">{cardTitle}</p>
-      <p className="cards-sub-title">{cardSubtitle}</p>
-    </div>
+    <>
+      <div className="card-container">
+        <img src={image} alt="alt-image" className="image" />
+        <p className="card-title">{cardTitle}</p>
+        <p className="cards-sub-title">{cardSubtitle}</p>
+      </div>
+    </>
   );
 };

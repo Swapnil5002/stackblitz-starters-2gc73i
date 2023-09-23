@@ -1,10 +1,11 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid;
-  margin: auto;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 5px 10px 5px 5px gray;
   .image {
-    height: 50%;
     width: calc(75% - 5px);
   }
   .card-title {

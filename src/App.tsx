@@ -39,11 +39,15 @@ export const App: FC = () => {
           <div className="main-card-child">
             {data.map((value, index) => (
               <div className="card" key={index}>
-                <Card
-                  cardTitle={value.name}
-                  cardSubtitle={value.tagline}
-                  image={value.image_url}
-                />
+                {isLoading ? (
+                  <div className="shimmer-effect"></div>
+                ) : (
+                  <Card
+                    cardTitle={value.name}
+                    cardSubtitle={value.tagline}
+                    image={value.image_url}
+                  />
+                )}
               </div>
             ))}
           </div>
