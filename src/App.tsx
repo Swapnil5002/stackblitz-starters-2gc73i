@@ -2,26 +2,45 @@ import { FC, useState, useRef, useEffect } from 'react';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
+import { EndPoints } from './endpoints';
 import useHttp from './hooks/fetch.hook';
-import { EndPoints, METHOD } from './endpoints';
 import './style.scss';
 
 export const App: FC = () => {
   const [inputVal, setInputVal] = useState('');
+  const [screenData, setScreenData] = useState([]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { data, isLoading: isBeerLoading } = useHttp(EndPoints.GET_BEER);
+  useEffect(() => {
+    console.log(data, 'DATA');
+  }, [data]);
+  useEffect(() => {
+    setScreenData(data);
+  }, [data]);
+
   useEffect(() => {
     inputRef?.current?.focus();
   }, []);
-  const handleSearch = (e) => {
-    let val = e.target.value;
-    setInputVal(val);
-  };
-  const { data: beerData, isLoading: isBeerLoading } = useHttp(
-    EndPoints.GET_BEER,
-    METHOD.GET
-  );
 
-  useEffect(() => {}, [inputVal]);
+  const handleSearch = (e) => {
+    setInputVal(e.target.value);
+  };
+
+  // useEffect(() => {
+  //   const searchData = async () => {
+  //     try {
+  //       const { data, isLoading: isSearchLoading } = await useHttp(
+  //         EndPoints.GET_BEER + '?beer_name=' + inputVal
+  //       );
+  //       setScreenData(data);
+  //       setIsLoading(isSearchLoading);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   searchData();
+  // }, [inputVal]);
+
   return (
     <Layout
       title="Beer Bank"
@@ -40,7 +59,7 @@ export const App: FC = () => {
       mainBody={
         <div className="main-card-container">
           <div className="main-card-child">
-            {beerData.map((value, index) => (
+            {screenData?.map((value, index) => (
               <div className="card" key={index}>
                 {isBeerLoading ? (
                   <div className="shimmer-effect"></div>
@@ -56,6 +75,6 @@ export const App: FC = () => {
           </div>
         </div>
       }
-    ></Layout>
+    />
   );
 };
