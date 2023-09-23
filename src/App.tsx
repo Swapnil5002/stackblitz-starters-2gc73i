@@ -3,7 +3,7 @@ import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
 import useHttp from './hooks/fetch.hook';
-import { EndPoints } from './endpoints';
+import { EndPoints, METHOD } from './endpoints';
 import './style.scss';
 
 export const App: FC = () => {
@@ -16,7 +16,10 @@ export const App: FC = () => {
     let val = e.target.value;
     setInputVal(val);
   };
-  const { data, isLoading } = useHttp(EndPoints.GET_BEER, 'GET');
+  const { data: beerData, isLoading: isBeerLoading } = useHttp(
+    EndPoints.GET_BEER,
+    METHOD.GET
+  );
 
   useEffect(() => {}, [inputVal]);
   return (
@@ -37,9 +40,9 @@ export const App: FC = () => {
       mainBody={
         <div className="main-card-container">
           <div className="main-card-child">
-            {data.map((value, index) => (
+            {beerData.map((value, index) => (
               <div className="card" key={index}>
-                {isLoading ? (
+                {isBeerLoading ? (
                   <div className="shimmer-effect"></div>
                 ) : (
                   <Card
