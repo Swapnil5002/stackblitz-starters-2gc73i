@@ -2,7 +2,7 @@ import { FC, useState, useRef, useEffect } from 'react';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
-import { EndPoints, METHOD } from './endpoints';
+import { EndPoints } from './endpoints';
 import './style.scss';
 
 export const App: FC = () => {
