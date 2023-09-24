@@ -4,10 +4,32 @@ interface ModalProps {
   modalData: any;
   modalOpen: boolean;
 }
+interface BeerContent {
+  contentHeading: string;
+  contentValue: string;
+}
+interface BeerContentDetailsProps {
+  contentHeading: string;
+  contentValue: string;
+}
+const BeerContentDetails: React.FC<BeerContentDetailsProps> = ({
+  contentHeading,
+  contentValue,
+}) => {
+  return (
+    <div className="content-heading">
+      <span>{contentHeading}</span>
+      <span>{contentValue}</span>
+    </div>
+  );
+};
 
 export const Modal: React.FC<ModalProps> = ({ modalData, modalOpen }) => {
-  console.log(modalData, 'DATA__DATA');
-
+  const beerContentDetails: BeerContent[] = [
+    { contentHeading: 'IBU', contentValue: modalData.ibu },
+    { contentHeading: 'ABV', contentValue: modalData.abv },
+    { contentHeading: 'EVC', contentValue: modalData.ebc },
+  ];
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -21,6 +43,18 @@ export const Modal: React.FC<ModalProps> = ({ modalData, modalOpen }) => {
         <div className="content-container">
           <h2 className="modal-title">{modalData.name}</h2>
           <p className="tagline">{modalData.tagline}</p>
+          {beerContentDetails.map((val, index) => (
+            <BeerContentDetails
+              key={index}
+              contentHeading={val.contentHeading}
+              contentValue={val.contentValue}
+            />
+          ))}
+          <p>{modalData.description}</p>
+          <p>Best Served with:</p>
+          {modalData.food_pairing((val, idx) => (
+            <li key={idx}>{val}</li>
+          ))}
         </div>
       </div>
     </div>
