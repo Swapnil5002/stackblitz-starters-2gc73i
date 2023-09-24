@@ -30,11 +30,13 @@ export const App: FC = () => {
       try {
         const response = await fetch(EndPoints.GET_BEER);
         const data = await response.json();
-        setScreenData(data);
+        if (data) {
+          setScreenData(data);
+          setLoading(false);
+        }
       } catch (error) {
         console.error(error);
       }
-      setLoading(false);
     };
     fetchData();
   }, []);
@@ -47,11 +49,13 @@ export const App: FC = () => {
           EndPoints.GET_BEER + '?beer_name=' + inputVal
         );
         const data = await response.json();
-        setScreenData(data);
+        if (data) {
+          setScreenData(data);
+          setLoading(false);
+        }
       } catch (error) {
         console.error(error);
       }
-      setLoading(false);
     };
     const debouncedFetchData = debounce(fetchData, CONSTANTS.debounceConst);
     inputVal && debouncedFetchData();
