@@ -62,13 +62,13 @@ export const App: FC = () => {
     setData(beerData);
   };
 
-  // useEffect(() => {
-  //   if (open) {
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     document.body.style.overflow = '';
-  //   }
-  // }, [open]);
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [open]);
 
   return (
     <Layout
