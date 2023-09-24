@@ -65,8 +65,8 @@ export const App: FC = () => {
 
   return (
     <Layout
-      title="Beer Bank"
-      subTitle="Find your favourite beer here!"
+      title="The Beer Bank"
+      subTitle="Find your favourite beer here"
       headerComponent={
         <Input
           inputRef={inputRef}
