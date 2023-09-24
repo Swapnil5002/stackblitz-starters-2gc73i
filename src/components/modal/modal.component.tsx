@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './modal.component.style';
 interface ModalProps {
   modalData: any;
   modalOpen: boolean;
@@ -8,8 +8,10 @@ interface ModalProps {
 export const Modal: React.FC<ModalProps> = ({ modalData, modalOpen }) => {
   console.log(modalData.name, 'DATA__DATA');
   return (
-    <>
-      <div>This is Modal {modalData.name}</div>
-    </>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2 className="modal-title">{modalData.name}</h2>
+      </div>
+    </div>
   );
 };

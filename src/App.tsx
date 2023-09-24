@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect, useMemo, useCallback, useState } from 'react';
+import { FC, useRef, useEffect, useState } from 'react';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
@@ -36,7 +36,6 @@ export const App: FC = () => {
       }
       setLoading(false);
     };
-
     fetchData();
   }, []);
 
@@ -63,6 +62,14 @@ export const App: FC = () => {
     setData(beerData);
   };
 
+  // useEffect(() => {
+  //   if (open) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = '';
+  //   }
+  // }, [open]);
+
   return (
     <Layout
       title="The Beer Bank"
@@ -80,6 +87,7 @@ export const App: FC = () => {
       }
       mainBody={
         <>
+          {open && <Modal modalData={data} modalOpen={open} />}
           <div className="main-card-container">
             <div className="main-card-child">
               {screenData?.map((value, index) => (
@@ -98,7 +106,6 @@ export const App: FC = () => {
               ))}
             </div>
           </div>
-          <Modal modalData={data} modalOpen={open} />
         </>
       }
     />
