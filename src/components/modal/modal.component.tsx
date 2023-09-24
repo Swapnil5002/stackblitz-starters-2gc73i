@@ -52,9 +52,6 @@ export const Modal: React.FC<ModalProps> = ({ modalData, modalOpen }) => {
           ))}
           <p>{modalData.description}</p>
           <p>Best Served with:</p>
-          {modalData.food_pairing((val, idx) => (
-            <li key={idx}>{val}</li>
-          ))}
         </div>
       </div>
     </div>
