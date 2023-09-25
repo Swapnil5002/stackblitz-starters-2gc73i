@@ -38,6 +38,7 @@ export const Modal: React.FC<ModalProps> = ({ modalData, modalOpen }) => {
             src={modalData.image_url}
             alt={modalData.title}
             className="image"
+            loading="lazy"
           />
         </div>
         <div className="content-container">

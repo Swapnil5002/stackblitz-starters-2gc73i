@@ -17,7 +17,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <>
       <div className="card-container" onClick={onClick}>
-        <img src={image} alt="alt-image" className="image" />
+        <img src={image} alt="alt-image" className="image" loading="lazy" />
         <p className="card-title">{cardTitle}</p>
         <p className="cards-sub-title">{cardSubtitle}</p>
       </div>
