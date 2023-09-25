@@ -92,24 +92,24 @@ export const App: FC = () => {
       mainBody={
         <>
           {open && <Modal modalData={data} modalOpen={open} />}
-          <div className="main-card-container">
-            <div className="main-card-child">
-              {screenData?.map((value, index) => (
-                <div className="card" key={index}>
-                  {loading ? (
-                    <Loader />
-                  ) : (
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="main-card-container">
+              <div className="main-card-child">
+                {screenData?.map((value, index) => (
+                  <div className="card" key={index}>
                     <Card
                       cardTitle={value.name}
                       cardSubtitle={value.tagline}
                       image={value.image_url}
                       onClick={(e) => handleClick(e, value)}
                     />
-                  )}
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </>
       }
     />
