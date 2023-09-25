@@ -36,7 +36,7 @@ export const App: FC = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [!inputVal]);
 
   useEffect(() => {
     const fetchData = async () => {
