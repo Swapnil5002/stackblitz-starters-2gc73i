@@ -16,15 +16,12 @@ export const App: FC = () => {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    inputRef?.current?.focus();
-  }, []);
-
   const handleSearch = (e) => {
     setInputVal(e.target.value);
   };
 
   useEffect(() => {
+    inputRef?.current?.focus();
     const fetchData = async () => {
       setLoading(true);
       try {
