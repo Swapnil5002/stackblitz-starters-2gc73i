@@ -14,11 +14,12 @@ body {
 .main-card-container {
   display: flex;
   margin-bottom: 25px;
+  width: 80%;
+  margin: auto;
   .main-card-child {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1000px;
     margin: 0 auto;
     margin-top: 5%;
     width: 100%;
