@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 10vh);
   .loader {
     display: inline-block;
     width: 40px;
