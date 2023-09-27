@@ -39,7 +39,6 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button onClick={handleClose}>Close</button>
         <div className="image-container">
           <img
             src={modalData.image_url}
@@ -61,6 +60,7 @@ export const Modal: React.FC<ModalProps> = ({
           <p>{modalData.description}</p>
           <p>Best Served with:</p>
         </div>
+        <button onClick={handleClose}>Close</button>
       </div>
     </div>
   );
