@@ -88,7 +88,13 @@ export const App: FC = () => {
       }
       mainBody={
         <>
-          {open && <Modal modalData={data} modalOpen={open} />}
+          {open && (
+            <Modal
+              modalData={data}
+              modalOpen={open}
+              handleClose={() => setOpen(false)}
+            />
+          )}
           {loading ? (
             <Loader />
           ) : (

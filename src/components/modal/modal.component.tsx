@@ -3,6 +3,7 @@ import './modal.component.style';
 interface ModalProps {
   modalData: any;
   modalOpen: boolean;
+  handleClose: (...args) => void;
 }
 interface BeerContent {
   contentHeading: string;
@@ -24,15 +25,21 @@ const BeerContentDetails: React.FC<BeerContentDetailsProps> = ({
   );
 };
 
-export const Modal: React.FC<ModalProps> = ({ modalData, modalOpen }) => {
+export const Modal: React.FC<ModalProps> = ({
+  modalData,
+  modalOpen,
+  handleClose,
+}) => {
   const beerContentDetails: BeerContent[] = [
     { contentHeading: 'IBU', contentValue: modalData.ibu },
     { contentHeading: 'ABV', contentValue: modalData.abv },
     { contentHeading: 'EVC', contentValue: modalData.ebc },
   ];
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
+        <button onClick={handleClose}>Close</button>
         <div className="image-container">
           <img
             src={modalData.image_url}
