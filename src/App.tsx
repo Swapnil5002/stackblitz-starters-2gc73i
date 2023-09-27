@@ -6,7 +6,7 @@ import Loader from './components/loader/loader.component';
 import { Modal } from './components/modal/modal.component';
 import { CONSTANTS, EndPoints } from './endpoints';
 import './style.scss';
-import { debounce } from './utils/debounce.utils';
+import { useDebounce } from './utils/debounce.hook';
 
 export const App: FC = () => {
   const [inputVal, setInputVal] = useState('');
@@ -15,6 +15,7 @@ export const App: FC = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const debounceVal = useDebounce(inputVal, CONSTANTS.debounceConst);
 
   const handleSearch = (e) => {
     setInputVal(e.target.value);
@@ -36,7 +37,7 @@ export const App: FC = () => {
       }
     };
     fetchData();
-  }, [!inputVal]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,9 +55,8 @@ export const App: FC = () => {
         console.error(error);
       }
     };
-    const debouncedFetchData = debounce(fetchData, CONSTANTS.debounceConst);
-    inputVal && debouncedFetchData();
-  }, [inputVal]);
+    debounceVal && fetchData();
+  }, [debounceVal]);
 
   const handleClick = (e, beerData) => {
     setOpen(true);
