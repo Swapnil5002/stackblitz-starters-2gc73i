@@ -61,7 +61,9 @@ export const Modal: React.FC<ModalProps> = ({
           <p>Best Served with:</p>
         </div>
       </div>
-      <button onClick={handleClose}>Close</button>
+      <button onClick={handleClose} className="close">
+        Close
+      </button>
     </div>
   );
 };
