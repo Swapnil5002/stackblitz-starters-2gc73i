@@ -60,8 +60,8 @@ export const Modal: React.FC<ModalProps> = ({
           <p>{modalData.description}</p>
           <p>Best Served with:</p>
         </div>
-        <button onClick={handleClose}>Close</button>
       </div>
+      <button onClick={handleClose}>Close</button>
     </div>
   );
 };
