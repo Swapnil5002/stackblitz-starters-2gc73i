@@ -37,29 +37,34 @@ export const Modal: React.FC<ModalProps> = ({
   ];
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="image-container">
-          <img
-            src={modalData.image_url}
-            alt={modalData.title}
-            className="image"
-            loading="lazy"
-          />
-        </div>
-        <div className="content-container">
-          <h2 className="modal-title">{modalData.name}</h2>
-          <p className="tagline">{modalData.tagline}</p>
-          {beerContentDetails.map((val, index) => (
-            <BeerContentDetails
-              key={index}
-              contentHeading={val.contentHeading}
-              contentValue={val.contentValue}
+    <div className="main">
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <div className="image-container">
+            <img
+              src={modalData.image_url}
+              alt={modalData.title}
+              className="image"
+              loading="lazy"
             />
-          ))}
-          <p>{modalData.description}</p>
-          <p>Best Served with:</p>
+          </div>
+          <div className="content-container">
+            <h2 className="modal-title">{modalData.name}</h2>
+            <p className="tagline">{modalData.tagline}</p>
+            {beerContentDetails.map((val, index) => (
+              <BeerContentDetails
+                key={index}
+                contentHeading={val.contentHeading}
+                contentValue={val.contentValue}
+              />
+            ))}
+            <p>{modalData.description}</p>
+            <p>Best Served with:</p>
+          </div>
         </div>
+        <button onClick={handleClose} className="close">
+          Close
+        </button>
       </div>
       <button onClick={handleClose} className="close">
         Close
