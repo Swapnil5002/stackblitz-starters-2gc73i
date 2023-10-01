@@ -5,17 +5,30 @@ const AppContext = createContext({
   setShowErrorModal: (_data) => {
     // This is intentional
   },
+  handleErrorClick: (_val) => {},
 });
 
-const AppProvider = () => {
+const AppProvider = ({ children }) => {
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const handleErrorClick = () => {
+    setShowErrorModal(true);
+  };
   const errorPopUp = useMemo(() => {
-    return <>{showErrorModal && <div>This is error pop up.</div>}</>;
+    return (
+      <>
+        {showErrorModal && (
+          <div onClick={handleErrorClick}>This is error pop up.</div>
+        )}
+      </>
+    );
   }, []);
 
   return (
-    <AppContext.Provider value={{ showErrorModal, setShowErrorModal }}>
+    <AppContext.Provider
+      value={{ showErrorModal, setShowErrorModal, handleErrorClick }}
+    >
       {errorPopUp}
+      {children}
     </AppContext.Provider>
   );
 };
