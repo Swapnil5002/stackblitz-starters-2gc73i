@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useEffect, useMemo } from 'react';
+import { useContext, createContext, useState, useMemo } from 'react';
 
 const AppContext = createContext({
   showErrorModal: false,
