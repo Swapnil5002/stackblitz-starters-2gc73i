@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from 'react';
+import { useContext, createContext, useState, useEffect, useMemo } from 'react';
 
 const AppContext = createContext({
   showErrorModal: false,
@@ -9,11 +9,14 @@ const AppContext = createContext({
 
 const AppProvider = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const errorPopUp = useMemo(() => {
+    return <>This is error pop up.</>;
+  }, []);
 
   return (
-    <AppContext.Provider
-      value={{ showErrorModal, setShowErrorModal }}
-    ></AppContext.Provider>
+    <AppContext.Provider value={{ showErrorModal, setShowErrorModal }}>
+      {errorPopUp}
+    </AppContext.Provider>
   );
 };
 const AppUseContext = () => useContext(AppContext);
