@@ -11,7 +11,7 @@ const AppContext = createContext({
 const AppProvider = ({ children }) => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const handleErrorClick = () => {
-    setShowErrorModal(true);
+    setShowErrorModal((prev) => !prev);
   };
   const errorPopUp = useMemo(() => {
     return (
