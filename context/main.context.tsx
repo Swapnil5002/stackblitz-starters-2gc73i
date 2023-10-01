@@ -1,6 +1,11 @@
 import { useContext, createContext, useState } from 'react';
 
-export const AppContext = createContext({});
+const AppContext = createContext({
+  showErrorModal: false,
+  setShowErrorModal: (_data) => {
+    // This is intentional
+  },
+});
 
 const AppProvider = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -13,4 +18,4 @@ const AppProvider = () => {
 };
 const AppUseContext = () => useContext(AppContext);
 
-export { AppUseContext, AppProvider };
+export { AppContext, AppUseContext, AppProvider };
