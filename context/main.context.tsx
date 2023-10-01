@@ -2,8 +2,6 @@ import { useContext, createContext, useState } from 'react';
 
 export const AppContext = createContext({});
 
-const AppUseContext = () => useContext(AppContext);
-
 const AppProvider = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -13,5 +11,6 @@ const AppProvider = () => {
     ></AppContext.Provider>
   );
 };
+const AppUseContext = () => useContext(AppContext);
 
 export { AppUseContext, AppProvider };
