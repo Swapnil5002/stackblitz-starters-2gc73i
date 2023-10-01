@@ -10,7 +10,7 @@ const AppContext = createContext({
 const AppProvider = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const errorPopUp = useMemo(() => {
-    return <>This is error pop up.</>;
+    return <>{showErrorModal && <div>This is error pop up.</div>}</>;
   }, []);
 
   return (

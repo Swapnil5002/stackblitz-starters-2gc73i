@@ -1,4 +1,5 @@
 import { FC, useRef, useEffect, useState } from 'react';
+import { AppUseContext } from '../context/main.context';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
@@ -17,9 +18,14 @@ export const App: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceVal = useDebounce(inputVal, CONSTANTS.debounceConst);
 
+  const { showErrorModal, setShowErrorModal } = AppUseContext();
   const handleSearch = (e) => {
     setInputVal(e.target.value);
   };
+
+  useEffect(() => {
+    console.log(showErrorModal, 'Modal');
+  }, [showErrorModal]);
 
   useEffect(() => {
     inputRef?.current?.focus();
@@ -71,6 +77,10 @@ export const App: FC = () => {
     }
   }, [open]);
 
+  const handleClicks = () => {
+    setShowErrorModal(true);
+  };
+
   return (
     <Layout
       title="The Beer Bank"
@@ -100,6 +110,7 @@ export const App: FC = () => {
           ) : (
             <div className="main-card-container">
               <div className="main-card-child">
+                <button onClick={handleClicks}>Click ME</button>
                 {screenData?.map((value, index) => (
                   <div className="card" key={index}>
                     <Card
