@@ -1,4 +1,5 @@
 import { useContext, createContext, useState, useMemo } from 'react';
+import { flushSync } from 'react-dom';
 
 const AppContext = createContext({
   showErrorModal: false,
@@ -11,7 +12,9 @@ const AppContext = createContext({
 const AppProvider = ({ children }) => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const handleErrorClick = () => {
-    setShowErrorModal((prev) => !prev);
+    flushSync(() => {
+      setShowErrorModal((prev) => !prev);
+    });
   };
   const errorPopUp = useMemo(() => {
     return (
