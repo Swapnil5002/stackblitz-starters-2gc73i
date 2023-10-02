@@ -3,7 +3,7 @@ import { flushSync } from 'react-dom';
 
 const AppContext = createContext({
   showErrorModal: false,
-  setShowErrorModal: (_data) => {
+  setShowErrorModal: (_data: boolean) => {
     // This is intentional
   },
   handleErrorClick: (_val) => {},
