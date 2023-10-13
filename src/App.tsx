@@ -15,7 +15,6 @@ export const App: FC = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(10);
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceVal = useDebounce(inputVal, CONSTANTS.debounceConst);
 
@@ -26,6 +25,7 @@ export const App: FC = () => {
   useEffect(() => {
     inputRef?.current?.focus();
     const fetchData = async () => {
+      const perPage = 10;
       setLoading(true);
       try {
         const response = await fetch(
