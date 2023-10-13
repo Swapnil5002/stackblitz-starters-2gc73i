@@ -30,7 +30,13 @@ body {
   width: calc(33.33% - 10px);
   margin-bottom: 20px;
 }
-
+.pagination {
+  display: flex;
+  flex-direction: row;
+  .sign {
+    cursor: pointer;
+  }
+}
 @media (max-width: 600px) {
   .card {
     width: 100%;

@@ -99,6 +99,15 @@ export const App: FC = () => {
       }
       mainBody={
         <>
+          <div className="pagination">
+            <div onClick={prevPage} className="sign">
+              -
+            </div>
+            <div>Page {page}</div>
+            <div onClick={nextPage} className="sign">
+              +
+            </div>
+          </div>
           {open && (
             <Modal
               modalData={data}
@@ -110,11 +119,6 @@ export const App: FC = () => {
             <Loader />
           ) : (
             <div className="main-card-container">
-              <div>
-                <div onClick={nextPage}>+</div>
-                <div>Page {page}</div>
-                <div onClick={prevPage}>-</div>
-              </div>
               <div className="main-card-child">
                 {screenData?.map((value, index) => (
                   <div className="card" key={index}>
