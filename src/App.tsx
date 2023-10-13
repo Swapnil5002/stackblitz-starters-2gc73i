@@ -1,5 +1,4 @@
 import { FC, useRef, useEffect, useState } from 'react';
-import { AppProvider, AppUseContext } from '../context/main.context';
 import { Card } from './components/card/card.component';
 import { Input } from './components/input/input.component';
 import { Layout } from './components/layout/layout.component';
@@ -15,26 +14,23 @@ export const App: FC = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceVal = useDebounce(inputVal, CONSTANTS.debounceConst);
-
-  const { showErrorModal, setShowErrorModal, handleErrorClick } =
-    AppUseContext();
 
   const handleSearch = (e) => {
     setInputVal(e.target.value);
   };
 
   useEffect(() => {
-    console.log(showErrorModal, 'ERROR MODAL');
-  }, [showErrorModal]);
-
-  useEffect(() => {
     inputRef?.current?.focus();
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(EndPoints.GET_BEER);
+        const response = await fetch(
+          `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`
+        );
         const data = await response.json();
         if (data) {
           setScreenData(data);
@@ -45,7 +41,7 @@ export const App: FC = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,57 +75,62 @@ export const App: FC = () => {
     }
   }, [open]);
 
-  const handleClicks = () => {
-    handleErrorClick((prevState) => !prevState);
+  const nextPage = () => {
+    setPage((prev) => prev + 1);
+  };
+  const prevPage = () => {
+    setPage((prev) => Math.max(prev - 1, 1));
   };
 
   return (
-    <AppProvider>
-      <Layout
-        title="The Beer Bank"
-        subTitle="Find your favourite beer here"
-        headerComponent={
-          <Input
-            inputRef={inputRef}
-            type="text"
-            placeholder="Search for Beer Name"
-            value={inputVal}
-            disabled={false}
-            onChange={(e) => handleSearch(e)}
-            classes="search-bar"
-          />
-        }
-        mainBody={
-          <>
-            {open && (
-              <Modal
-                modalData={data}
-                modalOpen={open}
-                handleClose={() => setOpen(false)}
-              />
-            )}
-            {loading ? (
-              <Loader />
-            ) : (
-              <div className="main-card-container">
-                <div className="main-card-child">
-                  <button onClick={handleClicks}>Click ME</button>
-                  {screenData?.map((value, index) => (
-                    <div className="card" key={index}>
-                      <Card
-                        cardTitle={value.name}
-                        cardSubtitle={value.tagline}
-                        image={value.image_url}
-                        onClick={(e) => handleClick(e, value)}
-                      />
-                    </div>
-                  ))}
-                </div>
+    <Layout
+      title="The Beer Bank"
+      subTitle="Find your favourite beer here"
+      headerComponent={
+        <Input
+          inputRef={inputRef}
+          type="text"
+          placeholder="Search for Beer Name"
+          value={inputVal}
+          disabled={false}
+          onChange={(e) => handleSearch(e)}
+          classes="search-bar"
+        />
+      }
+      mainBody={
+        <>
+          {open && (
+            <Modal
+              modalData={data}
+              modalOpen={open}
+              handleClose={() => setOpen(false)}
+            />
+          )}
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="main-card-container">
+              <div>
+                <div onClick={nextPage}>+</div>
+                <div>Page change</div>
+                <div onClick={prevPage}>-</div>
               </div>
-            )}
-          </>
-        }
-      />
-    </AppProvider>
+              <div className="main-card-child">
+                {screenData?.map((value, index) => (
+                  <div className="card" key={index}>
+                    <Card
+                      cardTitle={value.name}
+                      cardSubtitle={value.tagline}
+                      image={value.image_url}
+                      onClick={(e) => handleClick(e, value)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      }
+    />
   );
 };
