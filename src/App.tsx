@@ -112,7 +112,7 @@ export const App: FC = () => {
             <div className="main-card-container">
               <div>
                 <div onClick={nextPage}>+</div>
-                <div>Page change</div>
+                <div>Page {page}</div>
                 <div onClick={prevPage}>-</div>
               </div>
               <div className="main-card-child">
