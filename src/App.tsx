@@ -103,7 +103,7 @@ export const App: FC = () => {
             <div onClick={prevPage} className="sign">
               -
             </div>
-            <div>Page {page}</div>
+            <div className="pagination-text">Page {page}</div>
             <div onClick={nextPage} className="sign">
               +
             </div>
