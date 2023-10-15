@@ -29,7 +29,7 @@ export const App: FC = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`
+          EndPoints.GET_BEER + `?page=${page}&per_page=${perPage}`
         );
         const data = await response.json();
         if (data) {
