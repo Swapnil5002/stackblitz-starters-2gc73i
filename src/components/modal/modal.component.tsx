@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './modal.component.style';
 interface ModalProps {
   modalData: any;
@@ -35,6 +35,22 @@ export const Modal: React.FC<ModalProps> = ({
     { contentHeading: 'ABV', contentValue: modalData.abv },
     { contentHeading: 'EVC', contentValue: modalData.ebc },
   ];
+
+  useEffect(() => {
+    const handleEscKey = (e) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+    if (modalOpen) {
+      window.addEventListener('keydown', handleEscKey);
+    } else {
+      window.removeEventListener('keydown', handleEscKey);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEscKey);
+    };
+  }, [modalOpen, handleClose]);
 
   return (
     <div className="main">

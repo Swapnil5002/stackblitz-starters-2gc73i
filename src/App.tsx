@@ -82,6 +82,10 @@ export const App: FC = () => {
     setPage((prev) => Math.max(prev - 1, 1));
   };
 
+  const onCloseClick = (e) => {
+    setOpen(false);
+  };
+
   return (
     <Layout
       title="The Beer Bank"
@@ -112,7 +116,7 @@ export const App: FC = () => {
             <Modal
               modalData={data}
               modalOpen={open}
-              handleClose={() => setOpen(false)}
+              handleClose={(e) => onCloseClick(e)}
             />
           )}
           {loading ? (
