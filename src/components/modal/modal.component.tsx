@@ -19,8 +19,8 @@ const BeerContentDetails: React.FC<BeerContentDetailsProps> = ({
 }) => {
   return (
     <div className="content-heading">
-      <span>{contentHeading}</span>
-      <span>{contentValue}</span>
+      <span className="content-header">{contentHeading}:</span>
+      <span className="content-value">{contentValue}</span>
     </div>
   );
 };
@@ -51,6 +51,7 @@ export const Modal: React.FC<ModalProps> = ({
           <div className="content-container">
             <h2 className="modal-title">{modalData.name}</h2>
             <p className="tagline">{modalData.tagline}</p>
+            <div className="underline" />
             <div className="beer-container-details">
               {beerContentDetails.map((val, index) => (
                 <BeerContentDetails

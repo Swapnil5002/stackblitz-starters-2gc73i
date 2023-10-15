@@ -39,8 +39,13 @@
   .modal-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
-    margin: 0;
+    margin-bottom: 5px;
+  }
+  .underline {
+    border: 1px solid rgba(80, 26, 26, 0.616);
+    height: 4px;
+    background-color: rgba(80, 26, 26, 0.616);
+    width: 25%;
   }
   .tagline {
     color: rgb(206, 201, 201);
@@ -57,8 +62,15 @@
   margin-right: 5px;
   display: flex;
   flex-direction: row;
+  .content-header {
+    font-weight: 800;
+  }
+  .content-value {
+    font-weight: 500;
+  }
 }
 .beer-container-details {
   display: flex;
   flex-direction: row;
+  margin: 5px 0;
 }
