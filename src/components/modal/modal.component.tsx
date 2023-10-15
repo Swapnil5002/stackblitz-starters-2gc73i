@@ -51,13 +51,15 @@ export const Modal: React.FC<ModalProps> = ({
           <div className="content-container">
             <h2 className="modal-title">{modalData.name}</h2>
             <p className="tagline">{modalData.tagline}</p>
-            {beerContentDetails.map((val, index) => (
-              <BeerContentDetails
-                key={index}
-                contentHeading={val.contentHeading}
-                contentValue={val.contentValue}
-              />
-            ))}
+            <div className="beer-container-details">
+              {beerContentDetails.map((val, index) => (
+                <BeerContentDetails
+                  key={index}
+                  contentHeading={val.contentHeading}
+                  contentValue={val.contentValue}
+                />
+              ))}
+            </div>
             <p>{modalData.description}</p>
             <p>Best Served with:</p>
           </div>
