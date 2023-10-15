@@ -25,11 +25,10 @@ export const App: FC = () => {
   useEffect(() => {
     inputRef?.current?.focus();
     const fetchData = async () => {
-      const perPage = 10;
       setLoading(true);
       try {
         const response = await fetch(
-          EndPoints.GET_BEER + `?page=${page}&per_page=${perPage}`
+          EndPoints.GET_BEER + `?page=${page}&per_page=9`
         );
         const data = await response.json();
         if (data) {
