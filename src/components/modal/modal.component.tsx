@@ -77,11 +77,11 @@ export const Modal: React.FC<ModalProps> = ({
             </div>
             <p>{modalData.description}</p>
             <p>Best Served with:</p>
-            <ol>
+            <ul>
               {modalData.food_pairing.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
-            </ol>
+            </ul>
           </div>
         </div>
         <button onClick={handleClose} className="close">
