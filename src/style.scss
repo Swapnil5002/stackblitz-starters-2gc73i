@@ -26,6 +26,10 @@ body {
   }
 }
 
+input::placeholder {
+  font-size: 15px;
+  color: #ffc300;
+}
 .card {
   width: calc(33.33% - 10px);
   margin-bottom: 20px;

@@ -94,7 +94,7 @@ export const App: FC = () => {
         <Input
           inputRef={inputRef}
           type="text"
-          placeholder="Search for Beer Name"
+          placeholder="Search with Beer Name"
           value={inputVal}
           disabled={false}
           onChange={(e) => handleSearch(e)}
