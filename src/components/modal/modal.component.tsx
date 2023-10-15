@@ -38,9 +38,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   useEffect(() => {
     const handleEscKey = (e) => {
-      if (e.key === 'Escape') {
-        handleClose();
-      }
+      if (e.key === 'Escape') handleClose();
     };
     if (modalOpen) {
       window.addEventListener('keydown', handleEscKey);
